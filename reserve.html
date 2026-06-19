@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご予約 | 夜カフェ 月夜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 48px;
+      counter-reset: step;
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 60%;
+      right: -40%;
+      height: 1px;
+      background: rgba(200,169,110,0.2);
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(200,169,110,0.15);
+      border: 1px solid var(--gold-dim);
+      color: var(--gold-light);
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+    .step-text {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .steps { flex-direction: column; gap: 16px; }
+      .step::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">月夜</a>
+      <ul class="nav-links">
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="menu.html">メニュー</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="access.html">アクセス</a></li>
+        <li><a href="reserve.html" class="nav-cta nav-active">予約する</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">ホーム</a></li>
+      <li><a href="menu.html" class="mobile-link">メニュー</a></li>
+      <li><a href="gallery.html" class="mobile-link">ギャラリー</a></li>
+      <li><a href="access.html" class="mobile-link">アクセス</a></li>
+      <li><a href="reserve.html" class="mobile-link">予約する</a></li>
+    </ul>
+  </div>
+
+  <!-- ページヒーロー -->
+  <section class="page-hero">
+    <div class="page-hero-stars" id="pageStars"></div>
+    <div class="page-hero-moon"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-label">Reservation</p>
+      <h1 class="page-hero-title">ご予約</h1>
+      <p class="page-hero-desc">特別な夜のひとときをご予約ください</p>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">ホーム</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>ご予約</span>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="reserve-page section">
+    <div class="stars-bg" id="starsReserve"></div>
+    <div class="container">
+
+      <!-- ステップ案内 -->
+      <div class="steps reveal" style="max-width:640px; margin:0 auto 60px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">フォームに<br>入力</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">スタッフが<br>確認</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">お電話で<br>ご確認</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">当日の<br>ご来店</div>
+        </div>
+      </div>
+
+      <div class="reserve-grid">
+
+        <!-- フォーム -->
+        <div class="reserve-form-wrap reveal">
+          <h2 style="font-family:'Zen Old Mincho',serif; font-size:1.1rem; color:var(--gold-light); font-weight:400; margin-bottom:28px; letter-spacing:0.1em;">
+            予約フォーム
+          </h2>
+          <form class="reserve-form" id="reserveForm">
+            <div class="form-group">
+              <label for="name">お名前 <span class="required">*</span></label>
+              <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">電話番号 <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="090-0000-0000" required>
+            </div>
+            <div class="form-group">
+              <label for="email">メールアドレス</label>
+              <input type="email" id="email" name="email" placeholder="info@example.com">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">ご希望日 <span class="required">*</span></label>
+                <input type="date" id="date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="time">ご希望時間 <span class="required">*</span></label>
+                <select id="time" name="time" required>
+                  <option value="">選択してください</option>
+                  <option>17:00 (日曜のみ)</option>
+                  <option>17:30 (日曜のみ)</option>
+                  <option>18:00</option>
+                  <option>18:30</option>
+                  <option>19:00</option>
+                  <option>19:30</option>
+                  <option>20:00</option>
+                  <option>20:30</option>
+                  <option>21:00</option>
+                  <option>21:30</option>
+                  <option>22:00</option>
+                  <option>22:30</option>
+                  <option>23:00</option>
+                  <option>23:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="guests">人数 <span class="required">*</span></label>
+              <select id="guests" name="guests" required>
+                <option value="">選択してください</option>
+                <option>1名</option>
+                <option>2名</option>
+                <option>3名</option>
+                <option>4名</option>
+                <option>5名（要相談）</option>
+                <option>6名以上（要相談）</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="occasion">ご利用シーン</label>
+              <select id="occasion" name="occasion">
+                <option value="">選択してください（任意）</option>
+                <option>お一人様でのご利用</option>
+                <option>デート・記念日</option>
+                <option>友人との集まり</option>
+                <option>仕事帰りの一杯</option>
+                <option>誕生日・お祝い</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">ご要望・メッセージ</label>
+              <textarea id="message" name="message" rows="4" placeholder="アレルギー、記念日のご要望、席のご希望など、お気軽にお知らせください"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">予約を申し込む</button>
+            <p style="text-align:center; font-size:0.75rem; color:var(--cream-dim); margin-top:12px;">
+              送信後、スタッフよりお電話にてご確認いたします
+            </p>
+          </form>
+        </div>
+
+        <!-- サイド情報 -->
+        <div class="reserve-info reveal delay-2">
+
+          <!-- 注意事項 -->
+          <div class="reserve-card" style="margin-bottom:20px;">
+            <h3>ご予約について</h3>
+            <ul>
+              <li>ご予約は当日18:00まで受け付けております</li>
+              <li>5名様以上の場合はお電話にてご相談ください</li>
+              <li>キャンセルは前日18:00までにご連絡ください</li>
+              <li>お席のご用意は到着後30分となります</li>
+              <li>お支払いは現金・カード対応しております</li>
+            </ul>
+          </div>
+
+          <!-- 電話予約 -->
+          <div class="reserve-card" style="margin-bottom:20px;">
+            <h3>お電話でのご予約</h3>
+            <div class="reserve-tel">
+              <p>お電話でも承ります</p>
+              <a href="tel:090-2404-8023" class="tel-number">090-2404-8023</a>
+              <p class="tel-hours">受付 18:00〜23:00（火曜定休）</p>
+            </div>
+          </div>
+
+          <!-- Instagram DM -->
+          <div class="reserve-card">
+            <h3>InstagramのDMでも</h3>
+            <p style="font-size:0.85rem; color:var(--cream-dim); margin-bottom:16px;">
+              お気軽にInstagramのダイレクトメッセージからもご予約・お問い合わせいただけます。
+            </p>
+            <a href="https://www.instagram.com/tsukuyo_cafe/" target="_blank" class="btn btn-outline" style="font-size:0.82rem; padding:10px 20px; width:100%; justify-content:center;">
+              @tsukuyo_cafe を開く
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="footer-logo-text">月夜</span>
+          <span class="footer-logo-sub">Night Café Tsukiyo</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="index.html">ホーム</a>
+          <a href="menu.html">メニュー</a>
+          <a href="gallery.html">ギャラリー</a>
+          <a href="access.html">アクセス</a>
+          <a href="reserve.html">ご予約</a>
+        </nav>
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/tsukuyo_cafe/" target="_blank" class="sns-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 夜カフェ 月夜. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 予約完了モーダル -->
+  <div class="modal" id="modal">
+    <div class="modal-inner">
+      <div class="modal-moon">🌙</div>
+      <h3>ご予約を受け付けました</h3>
+      <p>後ほどスタッフよりお電話にてご確認いたします。<br>月夜でお待ちしております。</p>
+      <button class="btn btn-primary" id="modalClose">閉じる</button>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <script src="script.js"></script>
+  <script>
+    createStars('pageStars', 80);
+    createStars('starsReserve', 60);
+  </script>
+</body>
+</html>

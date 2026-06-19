@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メニュー | 夜カフェ 月夜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">月夜</a>
+      <ul class="nav-links">
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="menu.html" class="nav-active">メニュー</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="access.html">アクセス</a></li>
+        <li><a href="reserve.html" class="nav-cta">予約する</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">ホーム</a></li>
+      <li><a href="menu.html" class="mobile-link">メニュー</a></li>
+      <li><a href="gallery.html" class="mobile-link">ギャラリー</a></li>
+      <li><a href="access.html" class="mobile-link">アクセス</a></li>
+      <li><a href="reserve.html" class="mobile-link">予約する</a></li>
+    </ul>
+  </div>
+
+  <!-- ページヒーロー -->
+  <section class="page-hero">
+    <div class="page-hero-stars" id="pageStars"></div>
+    <div class="page-hero-moon"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-label">Menu</p>
+      <h1 class="page-hero-title">メニュー</h1>
+      <p class="page-hero-desc">夜を彩る、こだわりのドリンクとフード</p>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">ホーム</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>メニュー</span>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="menu-page section">
+    <div class="container">
+
+      <!-- タブ -->
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-tab="drinks">ドリンク</button>
+        <button class="tab-btn" data-tab="food">フード</button>
+        <button class="tab-btn" data-tab="dessert">デザート</button>
+        <button class="tab-btn" data-tab="alcohol">夜のお酒</button>
+      </div>
+
+      <!-- ドリンク -->
+      <div class="tab-content active" id="tab-drinks">
+        <div class="menu-full-grid">
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img drinks-bg-1">
+              <div class="menu-badge">人気 No.1</div>
+            </div>
+            <div class="menu-full-body">
+              <h3>月見ラテ</h3>
+              <p>丸い月をイメージした、とろけるようなミルクラテ。上品な甘さと芳醇な香りが夜に溶け込む、月夜の定番ドリンク。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥680</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img drinks-bg-2">
+              <div class="menu-badge new">NEW</div>
+            </div>
+            <div class="menu-full-body">
+              <h3>星降るソーダ</h3>
+              <p>夜空をイメージした深いブルーのクリームソーダ。キラキラ輝く星の粒が夜の演出を添える一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥750</span>
+                <span class="menu-full-tag">ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img drinks-bg-3"></div>
+            <div class="menu-full-body">
+              <h3>深夜のほうじ茶ラテ</h3>
+              <p>香ばしい薫りが漂う、温かなほうじ茶ラテ。静かな夜にそっと寄り添う、ほっと落ち着く一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥620</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img drinks-bg-4"></div>
+            <div class="menu-full-body">
+              <h3>月夜のコーヒー</h3>
+              <p>厳選シングルオリジンの深煎りブレンド。夜の静寂に似合う、濃厚な香りと力強い味わい。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥580</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img drinks-bg-1"></div>
+            <div class="menu-full-body">
+              <h3>抹茶ミルク</h3>
+              <p>京都産抹茶を使ったなめらかなミルクドリンク。和の上品な苦みとミルクの甘さが調和。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥650</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img drinks-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>チャイティーラテ</h3>
+              <p>スパイスを効かせた本格チャイ。夜の疲れをほぐす、温かくエキゾチックな一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥660</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img drinks-bg-3"></div>
+            <div class="menu-full-body">
+              <h3>ショコラショー</h3>
+              <p>フランス式の濃厚なホットチョコレート。大人のための甘くリッチなショコラの世界。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥720</span>
+                <span class="menu-full-tag">HOT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img drinks-bg-4"></div>
+            <div class="menu-full-body">
+              <h3>フルーツティー</h3>
+              <p>季節のフルーツを使った華やかなティー。酸味と甘みのバランスが爽やかな、夜の彩り。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥700</span>
+                <span class="menu-full-tag">HOT / ICE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img drinks-bg-1"></div>
+            <div class="menu-full-body">
+              <h3>バタフライピーソーダ</h3>
+              <p>神秘的な青紫のソーダ。レモンを加えると色が変わる、見ても楽しいSNS映えドリンク。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥730</span>
+                <span class="menu-full-tag">ICE</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- フード -->
+      <div class="tab-content" id="tab-food">
+        <div class="menu-full-grid">
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img food-bg-1">
+              <div class="menu-badge">おすすめ</div>
+            </div>
+            <div class="menu-full-body">
+              <h3>月夜のトースト</h3>
+              <p>バゲットに自家製クリームをたっぷりのせた、夜のちょっとした空腹に嬉しいトースト。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥480</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img food-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>クラブサンドイッチ</h3>
+              <p>具材たっぷりの3段サンドイッチ。深夜のお腹を満たすボリュームと満足感。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥850</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img food-bg-3"></div>
+            <div class="menu-full-body">
+              <h3>スープ＆パンセット</h3>
+              <p>季節の野菜を使ったスープとパンのセット。体の内側からほっと温まる夜のごちそう。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥680</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img food-bg-4"></div>
+            <div class="menu-full-body">
+              <h3>チーズプレート</h3>
+              <p>国内外から厳選した3種類のチーズのアソート。クラッカーとドライフルーツを添えて。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥980</span>
+                <span class="menu-full-tag">お酒と相性◎</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img food-bg-1"></div>
+            <div class="menu-full-body">
+              <h3>ガーリックシュリンプ</h3>
+              <p>プリプリの海老をガーリックバターでソテー。夜の食欲をそそる香ばしい一品。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥880</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img food-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>ドリアカップ</h3>
+              <p>こんがりチーズの焼き目が香ばしいカップドリア。夜の締めにちょうどいいひと品。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥780</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- デザート -->
+      <div class="tab-content" id="tab-dessert">
+        <div class="menu-full-grid">
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img dessert-bg-1">
+              <div class="menu-badge">人気 No.1</div>
+            </div>
+            <div class="menu-full-body">
+              <h3>満月プリン</h3>
+              <p>丸くて黄金色の特製プリン。とろけるやさしい甘さと濃厚な卵の風味。月夜の定番スイーツ。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥580</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img dessert-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>黒ごまロールケーキ</h3>
+              <p>夜空のような漆黒のロールケーキ。黒ごまの香ばしさとクリームの相性が絶妙。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥620</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img dessert-bg-3"></div>
+            <div class="menu-full-body">
+              <h3>チョコレートムース</h3>
+              <p>星型に飾り付けられた濃厚チョコムース。大人の夜にふさわしいリッチな甘さ。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥680</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img dessert-bg-4"></div>
+            <div class="menu-full-body">
+              <h3>和クリームあんみつ</h3>
+              <p>上質な和の素材で作るモダンあんみつ。夜に食べるほど心に沁みる日本の甘味。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥720</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img dessert-bg-1"></div>
+            <div class="menu-full-body">
+              <h3>クレームブリュレ</h3>
+              <p>表面をパリッとキャラメリゼした本格フレンチデザート。上品な甘さと食感のコントラスト。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥650</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img dessert-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>季節のパフェ</h3>
+              <p>旬の素材をふんだんに使ったグラスパフェ。見た目も美しい月夜の特製スイーツ。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥880</span>
+                <span class="menu-full-tag">季節限定</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- お酒 -->
+      <div class="tab-content" id="tab-alcohol">
+        <div class="menu-full-grid">
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img alc-bg-1">
+              <div class="menu-badge">おすすめ</div>
+            </div>
+            <div class="menu-full-body">
+              <h3>月夜カクテル</h3>
+              <p>月光をイメージした淡いブルーの自家製カクテル。甘くほのかに香る、月夜ならではの一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥880</span>
+                <span class="menu-full-tag">オリジナル</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img alc-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>クラフトビール</h3>
+              <p>季節ごとに変わる国内クラフトビール。夜の開放感をさらに高める、こだわりの一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥780</span>
+                <span class="menu-full-tag">季節限定</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img alc-bg-3"></div>
+            <div class="menu-full-body">
+              <h3>梅酒ソーダ</h3>
+              <p>国産梅を使った自家製梅酒をソーダで割った爽やか系。和の夜にぴったりな甘酸っぱさ。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥680</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal">
+            <div class="menu-full-img alc-bg-4"></div>
+            <div class="menu-full-body">
+              <h3>ホットワイン</h3>
+              <p>スパイスを効かせた温かい赤ワイン。肌寒い夜にじんわりと体を温める大人の一杯。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥780</span>
+                <span class="menu-full-tag">HOT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-1">
+            <div class="menu-full-img alc-bg-1"></div>
+            <div class="menu-full-body">
+              <h3>スパークリングワイン</h3>
+              <p>上質な泡と程よい酸味が特徴のスパークリング。記念日や特別な夜の乾杯に。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥850</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-full-card reveal delay-2">
+            <div class="menu-full-img alc-bg-2"></div>
+            <div class="menu-full-body">
+              <h3>日本酒 (一合)</h3>
+              <p>岡山地元の蔵元から厳選した純米吟醸。夜の静けさに寄り添う、上品な旨みと香り。</p>
+              <div class="menu-full-footer">
+                <span class="menu-full-price">¥880</span>
+                <span class="menu-full-tag">岡山産</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PDFメニューバナー -->
+      <div class="pdf-banner reveal">
+        <h3>フルメニューはPDFでもご覧いただけます</h3>
+        <p>季節のおすすめメニューや限定メニューはPDFをご覧ください</p>
+        <div class="pdf-links">
+          <a href="月夜メニュー　1.pdf" target="_blank" class="btn btn-outline">メニュー1</a>
+          <a href="月夜メニュー2.pdf" target="_blank" class="btn btn-outline">メニュー2</a>
+          <a href="月夜メニュー3.pdf" target="_blank" class="btn btn-outline">メニュー3</a>
+          <a href="月夜メニュー4.pdf" target="_blank" class="btn btn-outline">メニュー4</a>
+          <a href="月夜メニュー5.pdf" target="_blank" class="btn btn-outline">メニュー5</a>
+        </div>
+      </div>
+
+      <div class="menu-note">
+        <p>※ 価格はすべて税込です。メニューは季節により変更になる場合があります。</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="footer-logo-text">月夜</span>
+          <span class="footer-logo-sub">Night Café Tsukiyo</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="index.html">ホーム</a>
+          <a href="menu.html">メニュー</a>
+          <a href="gallery.html">ギャラリー</a>
+          <a href="access.html">アクセス</a>
+          <a href="reserve.html">ご予約</a>
+        </nav>
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/tsukuyo_cafe/" target="_blank" class="sns-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 夜カフェ 月夜. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    createStars('pageStars', 80);
+  </script>
+</body>
+</html>

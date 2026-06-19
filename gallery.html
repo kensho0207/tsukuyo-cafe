@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ギャラリー | 夜カフェ 月夜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery-filter {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid rgba(200,169,110,0.2);
+      color: var(--cream-dim);
+      padding: 8px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(200,169,110,0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-inner {
+      max-width: 900px;
+      width: 90%;
+      position: relative;
+    }
+    .lightbox-card {
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(200,169,110,0.2);
+    }
+    .lightbox-label {
+      text-align: center;
+      margin-top: 16px;
+      color: var(--gold-light);
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--cream-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      transition: color 0.3s;
+    }
+    .lightbox-close:hover { color: var(--gold-light); }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(200,169,110,0.15);
+      border: 1px solid rgba(200,169,110,0.3);
+      color: var(--gold-light);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+    .lightbox-nav:hover { background: rgba(200,169,110,0.3); }
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+    @media (max-width: 700px) {
+      .lightbox-prev { left: -48px; }
+      .lightbox-next { right: -48px; }
+      .lightbox-card { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">月夜</a>
+      <ul class="nav-links">
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="menu.html">メニュー</a></li>
+        <li><a href="gallery.html" class="nav-active">ギャラリー</a></li>
+        <li><a href="access.html">アクセス</a></li>
+        <li><a href="reserve.html" class="nav-cta">予約する</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html" class="mobile-link">ホーム</a></li>
+      <li><a href="menu.html" class="mobile-link">メニュー</a></li>
+      <li><a href="gallery.html" class="mobile-link">ギャラリー</a></li>
+      <li><a href="access.html" class="mobile-link">アクセス</a></li>
+      <li><a href="reserve.html" class="mobile-link">予約する</a></li>
+    </ul>
+  </div>
+
+  <!-- ページヒーロー -->
+  <section class="page-hero">
+    <div class="page-hero-stars" id="pageStars"></div>
+    <div class="page-hero-moon"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-label">Gallery</p>
+      <h1 class="page-hero-title">ギャラリー</h1>
+      <p class="page-hero-desc">月夜の空間と、こだわりのひと品たち</p>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">ホーム</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>ギャラリー</span>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="gallery-page section">
+    <div class="container">
+
+      <!-- フィルター -->
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="space">店内</button>
+        <button class="filter-btn" data-filter="drink">ドリンク</button>
+        <button class="filter-btn" data-filter="food">フード</button>
+        <button class="filter-btn" data-filter="night">夜の景色</button>
+      </div>
+
+      <!-- マソングリッド -->
+      <div class="gallery-masonry" id="galleryGrid">
+
+        <div class="gallery-masonry-item reveal" data-cat="space">
+          <div class="gallery-card gh1" data-label="店内の雰囲気">
+            <div class="gallery-masonry-label">店内の雰囲気</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-1" data-cat="drink">
+          <div class="gallery-card gh2" data-label="月見ラテ">
+            <div class="gallery-masonry-label">月見ラテ</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-2" data-cat="night">
+          <div class="gallery-card gh3" data-label="夜のテラス">
+            <div class="gallery-masonry-label">夜のテラス</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal" data-cat="space">
+          <div class="gallery-card gh4" data-label="カウンター席">
+            <div class="gallery-masonry-label">カウンター席</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-1" data-cat="food">
+          <div class="gallery-card gh5" data-label="満月プリン">
+            <div class="gallery-masonry-label">満月プリン</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-2" data-cat="night">
+          <div class="gallery-card gh6" data-label="月夜の窓から">
+            <div class="gallery-masonry-label">月夜の窓から</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal" data-cat="drink">
+          <div class="gallery-card gh7" data-label="星降るソーダ">
+            <div class="gallery-masonry-label">星降るソーダ</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-1" data-cat="space">
+          <div class="gallery-card gh8" data-label="テーブル席">
+            <div class="gallery-masonry-label">テーブル席</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-2" data-cat="food">
+          <div class="gallery-card gh9" data-label="チーズプレート">
+            <div class="gallery-masonry-label">チーズプレート</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal" data-cat="drink">
+          <div class="gallery-card gh3" data-label="月夜カクテル">
+            <div class="gallery-masonry-label">月夜カクテル</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-1" data-cat="space">
+          <div class="gallery-card gh1" data-label="キャンドルライト">
+            <div class="gallery-masonry-label">キャンドルライト</div>
+          </div>
+        </div>
+
+        <div class="gallery-masonry-item reveal delay-2" data-cat="food">
+          <div class="gallery-card gh5" data-label="クレームブリュレ">
+            <div class="gallery-masonry-label">クレームブリュレ</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Instagram セクション -->
+    <div class="insta-section">
+      <div class="container">
+        <div class="insta-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <p class="section-label">Instagram</p>
+        <h2 class="section-title" style="margin-bottom:12px;">@tsukuyo_cafe</h2>
+        <p style="color:var(--cream-dim); font-size:0.9rem; margin-bottom:28px;">
+          最新の写真・情報はInstagramでチェック
+        </p>
+        <a href="https://www.instagram.com/tsukuyo_cafe/" target="_blank" class="btn btn-primary">
+          Instagramを見る
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ライトボックス -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lbClose">✕</button>
+      <button class="lightbox-nav lightbox-prev" id="lbPrev">‹</button>
+      <button class="lightbox-nav lightbox-next" id="lbNext">›</button>
+      <div class="lightbox-card" id="lbCard"></div>
+      <p class="lightbox-label" id="lbLabel"></p>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <span class="footer-logo-text">月夜</span>
+          <span class="footer-logo-sub">Night Café Tsukiyo</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="index.html">ホーム</a>
+          <a href="menu.html">メニュー</a>
+          <a href="gallery.html">ギャラリー</a>
+          <a href="access.html">アクセス</a>
+          <a href="reserve.html">ご予約</a>
+        </nav>
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/tsukuyo_cafe/" target="_blank" class="sns-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 夜カフェ 月夜. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    createStars('pageStars', 80);
+
+    // フィルター
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-masonry-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        galleryItems.forEach(item => {
+          const show = filter === 'all' || item.dataset.cat === filter;
+          item.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    // ライトボックス
+    const lightbox = document.getElementById('lightbox');
+    const lbCard  = document.getElementById('lbCard');
+    const lbLabel = document.getElementById('lbLabel');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev  = document.getElementById('lbPrev');
+    const lbNext  = document.getElementById('lbNext');
+    let currentIdx = 0;
+    const cards = Array.from(document.querySelectorAll('.gallery-masonry-item .gallery-card'));
+
+    function openLightbox(idx) {
+      currentIdx = idx;
+      const src = cards[idx];
+      lbCard.className = 'lightbox-card ' + (src.className.split(' ').find(c => c.startsWith('g')) || '');
+      lbLabel.textContent = src.dataset.label || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    cards.forEach((card, i) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => openLightbox(i));
+    });
+    lbClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    lbPrev.addEventListener('click', () => openLightbox((currentIdx - 1 + cards.length) % cards.length));
+    lbNext.addEventListener('click', () => openLightbox((currentIdx + 1) % cards.length));
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') lbPrev.click();
+      if (e.key === 'ArrowRight') lbNext.click();
+      if (e.key === 'Escape') lbClose.click();
+    });
+  </script>
+</body>
+</html>
