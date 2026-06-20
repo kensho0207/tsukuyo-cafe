@@ -185,21 +185,44 @@ address a:hover{opacity:.7}
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  .nav{padding:18px 24px}.nav.scrolled{padding:12px 24px}
+  .nav{padding:16px 20px}.nav.scrolled{padding:10px 20px}
   .nav-menu{display:none}.nav-burger{display:flex}
-  .section{padding:80px 24px}
+  .section{padding:72px 20px}
   .mgrid{grid-template-columns:repeat(2,1fr)}
   .drink-grid{grid-template-columns:1fr}
-  .set-card{grid-template-columns:1fr}.set-card .mcard-img{min-height:200px;max-height:220px}
-  .foot-grid{grid-template-columns:1fr;gap:36px}
+  .set-card{grid-template-columns:1fr}.set-card .mcard-img{min-height:220px;max-height:240px}
+  .foot-grid{grid-template-columns:1fr;gap:32px}
   .foot-bottom{flex-direction:column;gap:10px;text-align:center}
+  footer{padding:52px 20px 28px}
 }
 @media(max-width:560px){
-  .hero-moon{width:72px;height:72px;top:9%;right:7%}
+  .nav{padding:13px 16px}.nav.scrolled{padding:10px 16px}
+  .nav-logo-text{font-size:1.2rem}
+  .nav-logo-img{width:30px;height:30px}
+  .section{padding:56px 16px}
+  .hero-moon{width:60px;height:60px;top:8%;right:6%}
+  .hero-logo-mark{width:64px;height:64px}
+  .hero-en{font-size:.8rem;letter-spacing:.3em}
   .mgrid{grid-template-columns:1fr}
-  .tabs{border-radius:16px;justify-content:center}
-  .menu-top{flex-direction:column;align-items:flex-start}
+  .mcard-img{height:180px}
+  .mcard-body{padding:14px 16px 18px}
+  .mcard-desc{font-size:.72rem}
+  .tabs{border-radius:14px;justify-content:center;gap:2px}
+  .tab{padding:9px 13px;font-size:.63rem;min-height:40px}
+  .menu-top{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:32px}
+  .h2{font-size:1.6rem}
+  .drink-col-head{padding:12px 16px}
+  .drow{padding:12px 16px}
+  .drow-name{font-size:.8rem}
+  .drow-price{font-size:.9rem}
+  .alc-note{padding:14px 16px;font-size:.72rem}
+  .set-card .mcard-body{padding:20px 18px 24px}
+  .set-card .mcard-name{font-size:1.05rem}
   .igrid{grid-template-columns:repeat(2,1fr)}
+  .mob-nav a{font-size:1.4rem}
+  footer{padding:44px 16px 24px}
+  .foot-grid{gap:24px}
+  .foot-bottom{margin-top:18px}
 }
 </style>
 </head>
@@ -245,7 +268,6 @@ address a:hover{opacity:.7}
       </div>
       <h1 class="hero-title">月夜</h1>
     </div>
-    <p class="hero-tagline">つきよ &ensp;·&ensp; Tsukiyo</p>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
