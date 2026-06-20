@@ -60,7 +60,7 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 /* hero に実際の店舗写真を使う場合は上の background を削除してこちらを有効化 */
 /* .hero-bg-img{position:absolute;inset:0} */
 /* .hero-bg-img img{opacity:.45} */
-.hero-moon{position:absolute;top:11%;right:13%;width:108px;height:108px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fff9e8,#e8c870 42%,#c89840 72%,#8a6010);box-shadow:0 0 60px rgba(200,160,80,.4),0 0 130px rgba(200,160,80,.14);animation:moonGlow 5s ease-in-out infinite}
+.hero-moon{position:absolute;top:9%;right:10%;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 38% 48%,rgba(0,0,0,.16) 0%,transparent 22%),radial-gradient(circle at 62% 34%,rgba(0,0,0,.12) 0%,transparent 13%),radial-gradient(circle at 26% 26%,rgba(0,0,0,.10) 0%,transparent 9%),radial-gradient(circle at 72% 68%,rgba(0,0,0,.10) 0%,transparent 11%),radial-gradient(circle at 50% 74%,rgba(0,0,0,.08) 0%,transparent 7%),radial-gradient(circle at 80% 40%,rgba(0,0,0,.08) 0%,transparent 8%),radial-gradient(circle at 18% 60%,rgba(0,0,0,.07) 0%,transparent 6%),radial-gradient(circle at 60%25%,#fffeee 0%,#eeeacc 14%,#d0c898 30%,#a89060 50%,#785830 70%,#40280a 100%);box-shadow:inset -28px 12px 55px rgba(0,0,0,.72),inset 5px -5px 14px rgba(255,248,200,.08),0 0 65px rgba(210,172,80,.42),0 0 160px rgba(210,172,80,.13);animation:moonGlow 5s ease-in-out infinite}
 .hero-stars{position:absolute;inset:0;pointer-events:none}
 .star{position:absolute;border-radius:50%;background:#e8e0d0;animation:twinkle var(--d,3s) var(--dl,0s) ease-in-out infinite}
 .hero-vignette{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,7,15,0) 0%,rgba(7,7,15,.08) 45%,rgba(7,7,15,.8) 80%,rgba(7,7,15,1) 100%)}
@@ -185,7 +185,7 @@ address a:hover{opacity:.7}
 /* KEYFRAMES */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes moonGlow{0%,100%{box-shadow:0 0 50px rgba(200,160,80,.35),0 0 110px rgba(200,160,80,.12)}50%{box-shadow:0 0 85px rgba(200,160,80,.58),0 0 170px rgba(200,160,80,.2)}}
+@keyframes moonGlow{0%,100%{box-shadow:inset -28px 12px 55px rgba(0,0,0,.72),inset 5px -5px 14px rgba(255,248,200,.08),0 0 55px rgba(210,172,80,.38),0 0 130px rgba(210,172,80,.11)}50%{box-shadow:inset -28px 12px 55px rgba(0,0,0,.72),inset 5px -5px 14px rgba(255,248,200,.08),0 0 90px rgba(210,172,80,.58),0 0 200px rgba(210,172,80,.19)}}
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
 @keyframes scrollPulse{0%,100%{opacity:.3;height:48px}50%{opacity:1;height:62px}}
 
@@ -206,7 +206,7 @@ address a:hover{opacity:.7}
   .nav-logo-text{font-size:1.2rem}
   .nav-logo-img{width:30px;height:30px}
   .section{padding:56px 16px}
-  .hero-moon{width:60px;height:60px;top:8%;right:6%}
+  .hero-moon{width:90px;height:90px;top:8%;right:5%}
   .hero-logo-mark{width:64px;height:64px}
   .hero-en{font-size:.8rem;letter-spacing:.3em}
   .mgrid{grid-template-columns:1fr}
@@ -267,7 +267,6 @@ address a:hover{opacity:.7}
   <div class="hero-stars" id="stars"></div>
   <div class="hero-vignette"></div>
   <div class="hero-content">
-    <span class="hero-en">Night Café · Okayama</span>
     <div class="hero-logo-wrap">
       <div class="hero-logo-mark">
         <img src="S__49872913.jpg" alt="月夜">
@@ -289,7 +288,7 @@ address a:hover{opacity:.7}
       <h2 class="h2">夜にだけ、開く場所。</h2>
       <div class="rule rule--c"></div>
       <p class="about-body">
-        月夜は夕方から深夜まで営業する、岡山のナイトカフェです。<br>
+        月夜は夕方から深夜まで営業する、岡山の夜カフェです。<br>
         勉強終わりや仕事帰りに、ふらっと立ち寄れる場所をめざしています。
       </p>
       <p class="about-body">
