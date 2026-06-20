@@ -127,6 +127,12 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 .set-card .mcard-name{font-size:1.2rem}
 .set-card .mcard-price{font-size:1.5rem}
 
+/* FEATURED CARD */
+.set-card.featured{border:1px solid var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 40px rgba(200,160,80,.18);position:relative}
+.featured-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge-pop{display:inline-block;background:var(--gold);color:var(--bg);font-size:.65rem;font-weight:700;letter-spacing:.12em;padding:4px 12px;border-radius:100px}
+.badge-sub{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:.62rem;letter-spacing:.1em;padding:3px 11px;border-radius:100px}
+
 /* DRINK / ALCOHOL LIST */
 .drink-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
 .drink-col{background:var(--card)}
@@ -379,13 +385,16 @@ address a:hover{opacity:.7}
     <!-- ── CAKE ── -->
     <div class="panel on" id="p-cake">
       <!-- つくよケーキセット (wide) -->
-      <div class="set-card r">
+      <div class="set-card featured r">
         <div class="mcard-img">
           <img src="S__49872915.jpg" alt="つくよケーキセット" style="object-position:center top">
         </div>
         <div class="mcard-body">
-          <span class="mcard-tag">Signature Set</span>
-          <p class="mcard-en" style="margin-top:8px">Tsukuyo Cake Set</p>
+          <div class="featured-badges">
+            <span class="badge-pop">⭐ 一番人気</span>
+            <span class="badge-sub">初めての方におすすめ</span>
+          </div>
+          <p class="mcard-en">Tsukuyo Cake Set</p>
           <h3 class="mcard-name">つくよケーキセット</h3>
           <p class="mcard-desc">マカロン・アイス・パンナコッタ・ブラウニーつき。<br>ケーキは季節のタルト / バスクチーズケーキ / 生チョコケーキよりお選びください。<br>ドリンクはコーヒー・ラテ・ソーダ等各種付き。</p>
           <p class="mcard-price">¥ 1,500</p>
@@ -564,10 +573,7 @@ address a:hover{opacity:.7}
     </div>
     <div class="foot-col">
       <h4>Hours</h4>
-      <div class="hrow"><span class="day">月・水・木</span><span class="time">18:00 – 25:00</span></div>
-      <div class="hrow"><span class="day">金・土</span><span class="time">18:00 – 25:00</span></div>
-      <div class="hrow"><span class="day">日曜日</span><span class="time">18:00 – 25:00</span></div>
-      <div class="hrow"><span class="day">火曜日</span><span class="time">18:00 – 25:00</span></div>
+      <div class="hrow" style="justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);letter-spacing:.1em;padding:12px 0">18:00 – 25:00</div>
     </div>
     <div class="foot-col">
       <h4>Access</h4>
