@@ -8,323 +8,196 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
-/* ─── DESIGN TOKENS ─── */
 :root {
-  --bg:      #07070f;
-  --bg2:     #0c0c18;
-  --bg3:     #10101e;
-  --card:    #0f0f1c;
-  --card2:   #151528;
-  --gold:    #c8a050;
-  --gold-l:  #e0bc72;
-  --gold-d:  rgba(200,160,80,.18);
-  --border:  rgba(200,160,80,.10);
-  --cream:   #f0e8d8;
-  --muted:   #60584c;
-  --body:    #a09080;
-  --r:       10px;
-  --ease:    cubic-bezier(.4,0,.2,1);
+  --bg:    #07070f;
+  --bg2:   #0c0c18;
+  --bg3:   #10101e;
+  --card:  #0f0f1c;
+  --card2: #151528;
+  --gold:  #c8a050;
+  --gl:    #e0bc72;
+  --gd:    rgba(200,160,80,.15);
+  --b:     rgba(200,160,80,.10);
+  --cream: #f0e8d8;
+  --muted: #60584c;
+  --body:  #a09080;
+  --r:     10px;
+  --ease:  cubic-bezier(.4,0,.2,1);
 }
-/* ─── RESET ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--body);
-  font-family:'Noto Sans JP',sans-serif;
-  font-weight:300;
-  line-height:1.9;
-  overflow-x:hidden;
-}
+body{background:var(--bg);color:var(--body);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.9;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 button{cursor:pointer;font-family:inherit;border:none;background:none}
 
-/* ─── NAV ─── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:28px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:padding .4s var(--ease), background .4s var(--ease);
-}
-.nav.scrolled{
-  padding:16px 48px;
-  background:rgba(7,7,15,.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  font-family:'Shippori Mincho',serif;
-  font-size:1.5rem;color:var(--gold-l);letter-spacing:.35em;
-}
-.nav-menu{list-style:none;display:flex;gap:40px}
-.nav-menu a{
-  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--muted);transition:color .3s;
-}
-.nav-menu a:hover{color:var(--gold-l)}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:26px 48px;display:flex;align-items:center;justify-content:space-between;transition:padding .4s var(--ease),background .4s var(--ease)}
+.nav.scrolled{padding:14px 48px;background:rgba(7,7,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-img{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.nav-logo-text{font-family:'Shippori Mincho',serif;font-size:1.4rem;color:var(--gl);letter-spacing:.3em}
+.nav-menu{list-style:none;display:flex;gap:36px}
+.nav-menu a{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.nav-menu a:hover{color:var(--gl)}
 .nav-burger{display:none;flex-direction:column;gap:5px;padding:4px}
-.nav-burger span{display:block;width:22px;height:1px;background:var(--gold-l);transition:all .3s}
+.nav-burger span{display:block;width:22px;height:1px;background:var(--gl);transition:all .3s}
 
-/* ─── MOBILE NAV ─── */
-.mob-nav{
-  position:fixed;inset:0;z-index:190;
-  background:rgba(7,7,15,.97);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .35s;
-}
+/* MOBILE NAV */
+.mob-nav{position:fixed;inset:0;z-index:190;background:rgba(7,7,15,.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
 .mob-nav.open{opacity:1;pointer-events:all}
 .mob-nav ul{list-style:none;text-align:center}
-.mob-nav li{margin:20px 0}
-.mob-nav a{
-  font-family:'Shippori Mincho',serif;font-size:1.8rem;
-  color:var(--cream);letter-spacing:.2em;
-  transition:color .3s;
-}
-.mob-nav a:hover{color:var(--gold-l)}
+.mob-nav li{margin:18px 0}
+.mob-nav a{font-family:'Shippori Mincho',serif;font-size:1.7rem;color:var(--cream);letter-spacing:.2em;transition:color .3s}
+.mob-nav a:hover{color:var(--gl)}
 
-/* ─── HERO ─── */
-.hero{
-  position:relative;height:100svh;min-height:640px;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
+/* HERO */
+.hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{
   position:absolute;inset:0;
-  /* ↓ 実際の店舗写真URLに差し替えてください */
-  background:
-    linear-gradient(160deg, #0a0820 0%, #080818 30%, #030310 60%, #050510 100%);
-  transform-origin:center;
+  background:radial-gradient(ellipse at 65% 35%, #12103a 0%, #07070f 55%);
 }
-/* 月 */
-.hero-moon{
-  position:absolute;top:12%;right:14%;
-  width:110px;height:110px;border-radius:50%;
-  background:radial-gradient(circle at 38% 38%,#fff9e8,#e8c870 42%,#c89840 72%,#8a6010);
-  box-shadow:0 0 60px rgba(200,160,80,.35),0 0 120px rgba(200,160,80,.12);
-  animation:moonGlow 5s ease-in-out infinite;
-}
-/* 星 */
+/* hero に実際の店舗写真を使う場合は上の background を削除してこちらを有効化 */
+/* .hero-bg-img{position:absolute;inset:0} */
+/* .hero-bg-img img{opacity:.45} */
+.hero-moon{position:absolute;top:11%;right:13%;width:108px;height:108px;border-radius:50%;background:radial-gradient(circle at 38% 38%,#fff9e8,#e8c870 42%,#c89840 72%,#8a6010);box-shadow:0 0 60px rgba(200,160,80,.4),0 0 130px rgba(200,160,80,.14);animation:moonGlow 5s ease-in-out infinite}
 .hero-stars{position:absolute;inset:0;pointer-events:none}
-.star{
-  position:absolute;border-radius:50%;
-  background:#e8e0d0;
-  animation:twinkle var(--d,3s) var(--dl,0s) ease-in-out infinite;
-}
-/* 下グラデ */
-.hero-vignette{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,
-    rgba(7,7,15,0) 0%,
-    rgba(7,7,15,.1) 50%,
-    rgba(7,7,15,.85) 85%,
-    rgba(7,7,15,1) 100%);
-}
+.star{position:absolute;border-radius:50%;background:#e8e0d0;animation:twinkle var(--d,3s) var(--dl,0s) ease-in-out infinite}
+.hero-vignette{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,7,15,0) 0%,rgba(7,7,15,.08) 45%,rgba(7,7,15,.8) 80%,rgba(7,7,15,1) 100%)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
-.hero-en{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1rem;letter-spacing:.45em;color:var(--gold);
-  display:block;margin-bottom:28px;
-  opacity:0;animation:fadeUp 1s .3s ease forwards;
-}
-.hero-title{
-  font-family:'Shippori Mincho',serif;font-weight:500;
-  font-size:clamp(4rem,12vw,9rem);
-  color:var(--cream);letter-spacing:.25em;line-height:1;
-  opacity:0;animation:fadeUp 1.1s .55s ease forwards;
-  text-shadow:0 0 80px rgba(200,160,80,.15);
-}
-.hero-tagline{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(.9rem,2vw,1.15rem);
-  letter-spacing:.35em;color:rgba(240,232,216,.5);
-  margin-top:28px;
-  opacity:0;animation:fadeUp 1.1s .8s ease forwards;
-}
-.hero-scroll{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
-  opacity:0;animation:fadeIn 1.5s 1.4s ease forwards;
-}
-.hero-scroll span{font-size:.62rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
+.hero-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;letter-spacing:.45em;color:var(--gold);display:block;margin-bottom:24px;opacity:0;animation:fadeUp 1s .3s ease forwards}
+.hero-logo-wrap{margin-bottom:20px;opacity:0;animation:fadeUp 1.1s .5s ease forwards}
+.hero-logo-mark{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;overflow:hidden;border:1px solid rgba(200,160,80,.3);box-shadow:0 0 30px rgba(200,160,80,.2)}
+.hero-title{font-family:'Shippori Mincho',serif;font-weight:500;font-size:clamp(4rem,12vw,9rem);color:var(--cream);letter-spacing:.25em;line-height:1;text-shadow:0 0 80px rgba(200,160,80,.18)}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,2vw,1.1rem);letter-spacing:.35em;color:rgba(240,232,216,.45);margin-top:24px;opacity:0;animation:fadeUp 1.1s .8s ease forwards}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1.5s 1.4s ease forwards}
+.hero-scroll span{font-size:.6rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
 .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2.2s ease-in-out infinite}
 
-/* ─── SECTION BASE ─── */
-.section{padding:120px 48px}
-.container{max-width:1120px;margin:0 auto}
-.label{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:.8rem;letter-spacing:.5em;color:var(--gold);
-  text-transform:uppercase;display:block;margin-bottom:16px;
-}
-.h2{
-  font-family:'Shippori Mincho',serif;font-weight:500;
-  font-size:clamp(1.8rem,4vw,2.8rem);
-  color:var(--cream);letter-spacing:.15em;line-height:1.3;
-}
-.rule{width:36px;height:1px;background:var(--gold);margin:28px 0}
-.rule--c{margin:28px auto}
+/* SECTIONS */
+.section{padding:112px 48px}
+.container{max-width:1100px;margin:0 auto}
+.lbl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.78rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:14px}
+.h2{font-family:'Shippori Mincho',serif;font-weight:500;font-size:clamp(1.8rem,4vw,2.7rem);color:var(--cream);letter-spacing:.15em;line-height:1.3}
+.rule{width:36px;height:1px;background:var(--gold);margin:26px 0}
+.rule--c{margin:26px auto}
 
 /* reveal */
-.r{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.r{opacity:0;transform:translateY(26px);transition:opacity .72s var(--ease),transform .72s var(--ease)}
 .r.v{opacity:1;transform:none}
 .r.d1{transition-delay:.12s}.r.d2{transition-delay:.22s}.r.d3{transition-delay:.32s}
 
-/* ─── ABOUT ─── */
+/* ABOUT */
 .about{background:var(--bg2)}
-.about-inner{max-width:640px;margin:0 auto;text-align:center}
-.about-body{font-size:.95rem;color:var(--body);line-height:2.3;letter-spacing:.06em}
-.about-body+.about-body{margin-top:18px}
-.about-en{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1.1rem;color:rgba(240,232,216,.35);letter-spacing:.25em;
-  margin-top:40px;
-}
+.about-inner{max-width:620px;margin:0 auto;text-align:center}
+.about-body{font-size:.94rem;color:var(--body);line-height:2.3;letter-spacing:.06em}
+.about-body+.about-body{margin-top:16px}
+.about-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(240,232,216,.3);letter-spacing:.25em;margin-top:36px}
 
-/* ─── MENU ─── */
+/* MENU */
 .menu{background:var(--bg)}
-.menu-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:24px}
-.tabs{
-  display:flex;gap:2px;
-  background:var(--bg3);border:1px solid var(--border);
-  border-radius:100px;padding:4px;
-}
-.tab{
-  padding:9px 22px;border-radius:100px;
-  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);transition:all .3s;
-}
+.menu-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+.tabs{display:flex;gap:2px;background:var(--bg3);border:1px solid var(--b);border-radius:100px;padding:4px;flex-wrap:wrap}
+.tab{padding:8px 20px;border-radius:100px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:all .3s}
 .tab.on{background:var(--gold);color:var(--bg);font-weight:400}
 .tab:hover:not(.on){color:var(--cream)}
-
-/* grid */
-.mgrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
-}
-.mcard{background:var(--card);transition:background .3s}
-.mcard:hover{background:var(--card2)}
-.mcard-img{height:190px;overflow:hidden;position:relative;background:var(--bg3)}
-.mcard-img img{transition:transform .65s var(--ease)}
-.mcard:hover .mcard-img img{transform:scale(1.06)}
-.mcard-img::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 45%,rgba(7,7,15,.75) 100%);
-}
-.mcard-tag{
-  position:absolute;top:13px;left:13px;z-index:1;
-  background:var(--gold);color:var(--bg);
-  font-size:.6rem;letter-spacing:.18em;padding:3px 10px;border-radius:100px;
-  text-transform:uppercase;
-}
-.mcard-body{padding:20px 22px 24px}
-.mcard-en{font-family:'Cormorant Garamond',serif;font-size:.68rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
-.mcard-name{font-family:'Shippori Mincho',serif;font-size:1.05rem;color:var(--cream);margin-bottom:9px;letter-spacing:.08em}
-.mcard-desc{font-size:.76rem;color:var(--muted);line-height:1.9;margin-bottom:14px}
-.mcard-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-l);letter-spacing:.08em}
-.mcard-price sub{font-size:.65rem;font-family:'Noto Sans JP',sans-serif;color:var(--muted);vertical-align:baseline}
 .panel{display:none}.panel.on{display:block}
 
-/* ─── INSTAGRAM ─── */
+/* CARD GRID */
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
+.mcard{background:var(--card);transition:background .3s}
+.mcard:hover{background:var(--card2)}
+.mcard-img{height:200px;overflow:hidden;position:relative;background:var(--bg3)}
+.mcard-img img{transition:transform .65s var(--ease);object-position:center}
+.mcard:hover .mcard-img img{transform:scale(1.07)}
+.mcard-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(7,7,15,.72) 100%)}
+.mcard-tag{position:absolute;top:12px;left:12px;z-index:1;background:var(--gold);color:var(--bg);font-size:.6rem;letter-spacing:.15em;padding:3px 10px;border-radius:100px;text-transform:uppercase}
+.mcard-body{padding:18px 20px 22px}
+.mcard-en{font-family:'Cormorant Garamond',serif;font-size:.67rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.mcard-name{font-family:'Shippori Mincho',serif;font-size:1.02rem;color:var(--cream);margin-bottom:8px;letter-spacing:.08em}
+.mcard-desc{font-size:.74rem;color:var(--muted);line-height:1.85;margin-bottom:12px}
+.mcard-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gl);letter-spacing:.06em}
+.mcard-price sub{font-size:.62rem;font-family:'Noto Sans JP',sans-serif;color:var(--muted);vertical-align:baseline;margin-left:3px}
+
+/* SET CARD (wide) */
+.set-card{background:var(--card);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;margin-bottom:1px}
+.set-card:hover{background:var(--card2)}
+.set-card .mcard-img{height:100%;min-height:220px}
+.set-card .mcard-body{padding:28px 28px 32px;display:flex;flex-direction:column;justify-content:center}
+.set-card .mcard-name{font-size:1.2rem}
+.set-card .mcard-price{font-size:1.5rem}
+
+/* DRINK / ALCOHOL LIST */
+.drink-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
+.drink-col{background:var(--card)}
+.drink-col-head{padding:16px 24px;background:var(--bg3);border-bottom:1px solid var(--b)}
+.drink-col-head h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.78rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
+.drow{display:flex;justify-content:space-between;align-items:center;padding:13px 24px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .25s}
+.drow:last-child{border-bottom:none}
+.drow:hover{background:var(--card2)}
+.drow-name{font-size:.84rem;color:var(--cream);letter-spacing:.04em}
+.drow-note{font-size:.68rem;color:var(--muted);margin-left:6px}
+.drow-price{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gl);white-space:nowrap;margin-left:12px}
+
+/* ALCOHOL NOTE */
+.alc-note{margin-top:20px;padding:18px 24px;background:var(--card);border:1px solid var(--b);border-radius:var(--r);font-size:.75rem;color:var(--muted);line-height:1.9;text-align:center}
+.alc-note strong{color:var(--body)}
+
+/* INSTAGRAM */
 .insta{background:var(--bg2)}
-.insta-head{text-align:center;margin-bottom:52px}
-.insta-head .rule{margin:28px auto}
-.igrid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
-  border-radius:var(--r);overflow:hidden;max-width:780px;margin:0 auto 48px;
-}
-.icell{aspect-ratio:1;overflow:hidden;position:relative;background:var(--bg3);cursor:pointer}
+.insta-head{text-align:center;margin-bottom:48px}
+.insta-head .rule{margin:26px auto}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:var(--r);overflow:hidden;max-width:780px;margin:0 auto 44px}
+.icell{aspect-ratio:1;overflow:hidden;position:relative;background:var(--bg3)}
 .icell img{transition:transform .6s var(--ease)}
 .icell:hover img{transform:scale(1.07)}
-.icell-ov{
-  position:absolute;inset:0;
-  background:rgba(200,160,80,.12);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .3s;
-}
+.icell-ov{position:absolute;inset:0;background:rgba(200,160,80,.12);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
 .icell:hover .icell-ov{opacity:1}
-.icell-ov svg{width:26px;height:26px;color:#fff}
+.icell-ov svg{width:24px;height:24px}
 .insta-cta{text-align:center}
-.insta-handle{
-  display:block;font-family:'Cormorant Garamond',serif;
-  font-size:1.35rem;color:var(--cream);letter-spacing:.15em;margin-bottom:24px;
-}
-.btn-insta{
-  display:inline-flex;align-items:center;gap:10px;
-  border:1px solid var(--gold);color:var(--gold);
-  padding:13px 36px;border-radius:100px;
-  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
-  transition:all .3s;
-}
+.insta-handle{display:block;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);letter-spacing:.15em;margin-bottom:22px}
+.btn-insta{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold);color:var(--gold);padding:12px 34px;border-radius:100px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;transition:all .3s}
 .btn-insta:hover{background:var(--gold);color:var(--bg)}
-.btn-insta svg{width:16px;height:16px}
+.btn-insta svg{width:15px;height:15px}
 
-/* ─── FOOTER ─── */
-footer{
-  background:#040409;
-  border-top:1px solid var(--border);
-  padding:80px 48px 40px;
-}
-.foot-grid{
-  max-width:960px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:56px;
-  padding-bottom:56px;border-bottom:1px solid var(--border);
-}
-.foot-logo span{
-  font-family:'Shippori Mincho',serif;font-size:2rem;
-  color:var(--gold-l);letter-spacing:.3em;display:block;margin-bottom:4px;
-}
-.foot-logo small{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:.75rem;color:var(--muted);letter-spacing:.3em;
-}
-.foot-col h4{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:.72rem;letter-spacing:.4em;color:var(--gold);
-  text-transform:uppercase;margin-bottom:20px;
-}
-.hrow{
-  display:flex;justify-content:space-between;
-  font-size:.8rem;padding:7px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.hrow .day{color:var(--body)}
-.hrow .time{color:var(--muted)}
-.hrow.off{opacity:.38}
-address{font-style:normal;font-size:.82rem;color:var(--muted);line-height:2.2}
+/* FOOTER */
+footer{background:#040409;border-top:1px solid var(--b);padding:72px 48px 36px}
+.foot-grid{max-width:940px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:56px;padding-bottom:52px;border-bottom:1px solid var(--b)}
+.foot-logo-img{width:52px;height:52px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:1px solid rgba(200,160,80,.25)}
+.foot-logo span{font-family:'Shippori Mincho',serif;font-size:1.8rem;color:var(--gl);letter-spacing:.3em;display:block;margin-bottom:4px}
+.foot-logo small{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.72rem;color:var(--muted);letter-spacing:.3em}
+.foot-col h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.7rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+.hrow{display:flex;justify-content:space-between;font-size:.8rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.hrow .day{color:var(--body)}.hrow .time{color:var(--muted)}.hrow.off{opacity:.35}
+address{font-style:normal;font-size:.8rem;color:var(--muted);line-height:2.2}
 address a{color:var(--gold);transition:opacity .3s}
 address a:hover{opacity:.7}
-.foot-bottom{
-  max-width:960px;margin:28px auto 0;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.foot-bottom p{font-size:.7rem;color:var(--muted);letter-spacing:.1em}
-.foot-sig{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  color:var(--gold);font-size:.85rem;letter-spacing:.15em;
-}
+.foot-bottom{max-width:940px;margin:26px auto 0;display:flex;justify-content:space-between;align-items:center}
+.foot-bottom p{font-size:.68rem;color:var(--muted);letter-spacing:.1em}
+.foot-sig{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:.82rem;letter-spacing:.15em}
 
-/* ─── KEYFRAMES ─── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes moonGlow{0%,100%{box-shadow:0 0 50px rgba(200,160,80,.3),0 0 100px rgba(200,160,80,.1)}50%{box-shadow:0 0 80px rgba(200,160,80,.55),0 0 160px rgba(200,160,80,.18)}}
-@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
-@keyframes scrollPulse{0%,100%{opacity:.35;height:48px}50%{opacity:1;height:60px}}
+@keyframes moonGlow{0%,100%{box-shadow:0 0 50px rgba(200,160,80,.35),0 0 110px rgba(200,160,80,.12)}50%{box-shadow:0 0 85px rgba(200,160,80,.58),0 0 170px rgba(200,160,80,.2)}}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+@keyframes scrollPulse{0%,100%{opacity:.3;height:48px}50%{opacity:1;height:62px}}
 
-/* ─── RESPONSIVE ─── */
+/* RESPONSIVE */
 @media(max-width:900px){
-  .nav{padding:20px 24px}.nav.scrolled{padding:14px 24px}
+  .nav{padding:18px 24px}.nav.scrolled{padding:12px 24px}
   .nav-menu{display:none}.nav-burger{display:flex}
   .section{padding:80px 24px}
   .mgrid{grid-template-columns:repeat(2,1fr)}
-  .foot-grid{grid-template-columns:1fr;gap:40px}
+  .drink-grid{grid-template-columns:1fr}
+  .set-card{grid-template-columns:1fr}.set-card .mcard-img{min-height:200px;max-height:220px}
+  .foot-grid{grid-template-columns:1fr;gap:36px}
   .foot-bottom{flex-direction:column;gap:10px;text-align:center}
 }
 @media(max-width:560px){
-  .hero-moon{width:70px;height:70px;top:10%;right:8%}
+  .hero-moon{width:72px;height:72px;top:9%;right:7%}
   .mgrid{grid-template-columns:1fr}
-  .tabs{flex-wrap:wrap;border-radius:16px;justify-content:center}
+  .tabs{border-radius:16px;justify-content:center}
   .menu-top{flex-direction:column;align-items:flex-start}
   .igrid{grid-template-columns:repeat(2,1fr)}
 }
@@ -332,9 +205,12 @@ address a:hover{opacity:.7}
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav class="nav" id="nav">
-  <span class="nav-logo">月夜</span>
+  <a href="#top" class="nav-logo">
+    <img src="S__49872913.jpg" alt="月夜ロゴ" class="nav-logo-img">
+    <span class="nav-logo-text">月夜</span>
+  </a>
   <ul class="nav-menu">
     <li><a href="#about">About</a></li>
     <li><a href="#menu">Menu</a></li>
@@ -346,30 +222,29 @@ address a:hover{opacity:.7}
   </button>
 </nav>
 
-<!-- モバイルナビ -->
 <div class="mob-nav" id="mobNav">
   <ul>
-    <li><a href="#about" class="mob-link">About</a></li>
-    <li><a href="#menu" class="mob-link">Menu</a></li>
-    <li><a href="#gallery" class="mob-link">Gallery</a></li>
-    <li><a href="#access" class="mob-link">Access</a></li>
+    <li><a href="#about" class="mlink">About</a></li>
+    <li><a href="#menu" class="mlink">Menu</a></li>
+    <li><a href="#gallery" class="mlink">Gallery</a></li>
+    <li><a href="#access" class="mlink">Access</a></li>
   </ul>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg" id="heroBg">
-    <!--
-      ★ ここに店舗の写真を入れてください。
-      例: <img src="店舗写真.jpg" style="width:100%;height:100%;object-fit:cover;opacity:.55">
-    -->
-  </div>
+  <div class="hero-bg"></div>
   <div class="hero-moon"></div>
   <div class="hero-stars" id="stars"></div>
   <div class="hero-vignette"></div>
   <div class="hero-content">
     <span class="hero-en">Night Café · Okayama</span>
-    <h1 class="hero-title">月夜</h1>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-mark">
+        <img src="S__49872913.jpg" alt="月夜">
+      </div>
+      <h1 class="hero-title">月夜</h1>
+    </div>
     <p class="hero-tagline">つきよ &ensp;·&ensp; Tsukiyo</p>
   </div>
   <div class="hero-scroll">
@@ -378,11 +253,11 @@ address a:hover{opacity:.7}
   </div>
 </section>
 
-<!-- ══ ABOUT ══ -->
+<!-- ABOUT -->
 <section class="about section" id="about">
   <div class="container">
     <div class="about-inner r">
-      <span class="label">About</span>
+      <span class="lbl">About</span>
       <h2 class="h2">夜を、愛でる場所。</h2>
       <div class="rule rule--c"></div>
       <p class="about-body">
@@ -391,7 +266,7 @@ address a:hover{opacity:.7}
         そんな特別な夜のために、月夜は扉を開けます。
       </p>
       <p class="about-body">
-        こだわり抜いたドリンクと、心を満たすフード。<br>
+        こだわり抜いたドリンクと、心を満たすスイーツ。<br>
         ゆっくりと、あなただけの夜時間を。
       </p>
       <p class="about-en">Where the night becomes beautiful.</p>
@@ -399,337 +274,254 @@ address a:hover{opacity:.7}
   </div>
 </section>
 
-<!-- ══ MENU ══ -->
+<!-- MENU -->
 <section class="menu section" id="menu">
   <div class="container">
     <div class="menu-top">
       <div>
-        <span class="label r">Menu</span>
+        <span class="lbl r">Menu</span>
         <h2 class="h2 r d1">月夜のメニュー</h2>
       </div>
       <div class="tabs r d2">
-        <button class="tab on" data-t="coffee">Coffee &amp; Tea</button>
+        <button class="tab on" data-t="drink">Drink</button>
         <button class="tab" data-t="alcohol">Alcohol</button>
-        <button class="tab" data-t="dessert">Dessert</button>
-        <button class="tab" data-t="food">Light Food</button>
+        <button class="tab" data-t="cake">Cake</button>
+        <button class="tab" data-t="waffle">Waffle</button>
+        <button class="tab" data-t="food">Food</button>
       </div>
     </div>
 
-    <!-- ── Coffee & Tea ── -->
-    <div class="panel on" id="p-coffee">
-      <div class="mgrid">
-        <div class="mcard r">
-          <div class="mcard-img">
-            <span class="mcard-tag">Signature</span>
-            <!-- ★ 画像URL差し替え → src="実際の画像URL" -->
-            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=75&fit=crop" alt="月見ラテ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Tsukimi Latte</p>
-            <h3 class="mcard-name">月見ラテ</h3>
-            <p class="mcard-desc">深煎りエスプレッソと甘いミルクフォームで描く、月のアートラテ。</p>
-            <p class="mcard-price">¥ 680 <sub>税込</sub></p>
-          </div>
+    <!-- ── DRINK ── -->
+    <div class="panel on" id="p-drink">
+      <div class="drink-grid">
+        <div class="drink-col">
+          <div class="drink-col-head"><h3>Coffee &amp; Tea</h3></div>
+          <div class="drow"><span class="drow-name">コーヒー<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 550</span></div>
+          <div class="drow"><span class="drow-name">カフェラテ<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 600</span></div>
+          <div class="drow"><span class="drow-name">カプチーノ<span class="drow-note">HOT</span></span><span class="drow-price">¥ 600</span></div>
+          <div class="drow"><span class="drow-name">アールグレイ<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 600</span></div>
+          <div class="drow"><span class="drow-name">キャラメルラテ<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 650</span></div>
+          <div class="drow"><span class="drow-name">まっちゃラテ<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 650</span></div>
+          <div class="drow"><span class="drow-name">ホットチョコ<span class="drow-note">HOT</span></span><span class="drow-price">¥ 600</span></div>
+          <div class="drow"><span class="drow-name">ココア<span class="drow-note">ICE / HOT</span></span><span class="drow-price">¥ 600</span></div>
+          <div class="drink-col-head" style="margin-top:1px"><h3>Smoothie</h3></div>
+          <div class="drow"><span class="drow-name">バナナスムージー</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">ストロベリースムージー</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">マンゴースムージー</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">ブルーベリースムージー</span><span class="drow-price">¥ 700</span></div>
         </div>
-        <div class="mcard r d1">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&q=75&fit=crop" alt="エスプレッソ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Espresso</p>
-            <h3 class="mcard-name">エスプレッソ</h3>
-            <p class="mcard-desc">厳選シングルオリジン豆を使用した、凝縮された深みある一杯。</p>
-            <p class="mcard-price">¥ 480</p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75&fit=crop" alt="ほうじ茶ラテ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Hojicha Latte</p>
-            <h3 class="mcard-name">ほうじ茶ラテ</h3>
-            <p class="mcard-desc">香ばしく炒ったほうじ茶に、ふわふわミルクフォームを重ねた和の一杯。</p>
-            <p class="mcard-price">¥ 620</p>
-          </div>
-        </div>
-        <div class="mcard r">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=75&fit=crop" alt="ドリップコーヒー" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Drip Coffee</p>
-            <h3 class="mcard-name">ドリップコーヒー</h3>
-            <p class="mcard-desc">その日のおすすめ豆をネルドリップで丁寧に抽出したブラックコーヒー。</p>
-            <p class="mcard-price">¥ 550</p>
-          </div>
-        </div>
-        <div class="mcard r d1">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1563006369-5b6b5b5b5b5b?w=400&q=75&fit=crop" alt="抹茶ミルク" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Matcha Milk</p>
-            <h3 class="mcard-name">抹茶ミルク</h3>
-            <p class="mcard-desc">京都産石臼挽き抹茶を使用。上品な苦みとなめらかなミルクの甘さ。</p>
-            <p class="mcard-price">¥ 650</p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1571658735976-1d7c7a4b5c9b?w=400&q=75&fit=crop" alt="スパイスチャイ" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Spiced Chai</p>
-            <h3 class="mcard-name">スパイスチャイ</h3>
-            <p class="mcard-desc">シナモン・カルダモン・ジンジャーを効かせた、体を温める本格チャイラテ。</p>
-            <p class="mcard-price">¥ 660</p>
-          </div>
+        <div class="drink-col">
+          <div class="drink-col-head"><h3>Cream Soda</h3></div>
+          <div class="drow"><span class="drow-name">メロンクリームソーダ</span><span class="drow-price">¥ 800</span></div>
+          <div class="drow"><span class="drow-name">カシスクリームソーダ</span><span class="drow-price">¥ 800</span></div>
+          <div class="drow"><span class="drow-name">マンゴークリームソーダ</span><span class="drow-price">¥ 800</span></div>
+          <div class="drow"><span class="drow-name">ストロベリークリームソーダ</span><span class="drow-price">¥ 800</span></div>
+          <div class="drink-col-head" style="margin-top:1px"><h3>Soft Drink</h3></div>
+          <div class="drow"><span class="drow-name">コーラ</span><span class="drow-price">¥ 550</span></div>
+          <div class="drow"><span class="drow-name">ジンジャエール</span><span class="drow-price">¥ 550</span></div>
+          <div class="drow"><span class="drow-name">マンゴージュース</span><span class="drow-price">¥ 550</span></div>
+          <div class="drow"><span class="drow-name">オレンジジュース</span><span class="drow-price">¥ 550</span></div>
+          <div class="drow"><span class="drow-name">パインアップルジュース</span><span class="drow-price">¥ 550</span></div>
         </div>
       </div>
     </div>
 
-    <!-- ── Alcohol ── -->
+    <!-- ── ALCOHOL ── -->
     <div class="panel" id="p-alcohol">
-      <div class="mgrid">
-        <div class="mcard r">
-          <div class="mcard-img">
-            <span class="mcard-tag">Original</span>
-            <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=75&fit=crop" alt="月夜カクテル" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Tsukiyo Cocktail</p>
-            <h3 class="mcard-name">月夜カクテル</h3>
-            <p class="mcard-desc">月光をイメージした淡いブルーのオリジナルカクテル。ほのかに甘く夜に溶ける一杯。</p>
-            <p class="mcard-price">¥ 880</p>
-          </div>
+      <div class="drink-grid">
+        <div class="drink-col">
+          <div class="drink-col-head"><h3>Whisky &amp; Highball</h3></div>
+          <div class="drow"><span class="drow-name">角ハイボール</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">マッカラン 12年</span><span class="drow-price">¥ 1,300</span></div>
+          <div class="drow"><span class="drow-name">ラフロイグ 10年</span><span class="drow-price">¥ 1,100</span></div>
+          <div class="drink-col-head" style="margin-top:1px"><h3>Cocktail</h3></div>
+          <div class="drow"><span class="drow-name">カシスオレンジ</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">ファジーネーブル</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">モーツァルトミルク</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">ストロベリーミルク</span><span class="drow-price">¥ 700</span></div>
         </div>
-        <div class="mcard r d1">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=75&fit=crop" alt="赤ワイン" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Red Wine</p>
-            <h3 class="mcard-name">赤ワイン（グラス）</h3>
-            <p class="mcard-desc">厳選フランス産。深いコクと余韻が夜の静けさに溶け込む。</p>
-            <p class="mcard-price">¥ 780</p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1563452619267-bc16ef6cef7c?w=400&q=75&fit=crop" alt="梅酒ソーダ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Plum Wine Soda</p>
-            <h3 class="mcard-name">梅酒ソーダ</h3>
-            <p class="mcard-desc">国産梅の自家製梅酒をソーダで割った、甘酸っぱく爽やかな和カクテル。</p>
-            <p class="mcard-price">¥ 680</p>
-          </div>
-        </div>
-        <div class="mcard r">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=75&fit=crop" alt="クラフトビール" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Craft Beer</p>
-            <h3 class="mcard-name">クラフトビール</h3>
-            <p class="mcard-desc">季節ごとに変わる国内クラフトビール。その時期だけの味わい。</p>
-            <p class="mcard-price">¥ 780 <sub>季節限定</sub></p>
-          </div>
-        </div>
-        <div class="mcard r d1">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1506377872008-6645d9d29ef7?w=400&q=75&fit=crop" alt="日本酒" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Sake</p>
-            <h3 class="mcard-name">日本酒（一合）</h3>
-            <p class="mcard-desc">岡山の蔵元から厳選した純米吟醸。上品な香りと深い旨み。</p>
-            <p class="mcard-price">¥ 880 <sub>岡山産</sub></p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=75&fit=crop" alt="ホットワイン" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Mulled Wine</p>
-            <h3 class="mcard-name">ホットワイン</h3>
-            <p class="mcard-desc">スパイスを添えて温めた赤ワイン。夜の肌寒さをやさしくほぐす。</p>
-            <p class="mcard-price">¥ 780</p>
-          </div>
+        <div class="drink-col">
+          <div class="drink-col-head"><h3>Sour &amp; Milk</h3></div>
+          <div class="drow"><span class="drow-name">ライチソーダ</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">バナナミルク</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">ティーミルク</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">まっちゃミルク</span><span class="drow-price">¥ 700</span></div>
+          <div class="drow"><span class="drow-name">メロンソーダ</span><span class="drow-price">¥ 700</span></div>
         </div>
       </div>
+      <p class="alc-note">
+        <strong>割り物について：</strong>水 / 炭酸 / オレンジ / ジンジャエール / コーラ / ミルク / マンゴー / パインアップル など各種ございます。<br>
+        お気軽にお申し付けください。全てのメニューにアルコールが含まれています。
+      </p>
     </div>
 
-    <!-- ── Dessert ── -->
-    <div class="panel" id="p-dessert">
-      <div class="mgrid">
+    <!-- ── CAKE ── -->
+    <div class="panel" id="p-cake">
+      <!-- つくよケーキセット (wide) -->
+      <div class="set-card r">
+        <div class="mcard-img">
+          <img src="S__49872915.jpg" alt="つくよケーキセット" style="object-position:center top">
+        </div>
+        <div class="mcard-body">
+          <span class="mcard-tag">Signature Set</span>
+          <p class="mcard-en" style="margin-top:8px">Tsukuyo Cake Set</p>
+          <h3 class="mcard-name">つくよケーキセット</h3>
+          <p class="mcard-desc">マカロン・アイス・パンナコッタ・ブラウニーつき。<br>ケーキは季節のタルト / バスクチーズケーキ / 生チョコケーキよりお選びください。<br>ドリンクはコーヒー・ラテ・ソーダ等各種付き。</p>
+          <p class="mcard-price">¥ 1,500</p>
+        </div>
+      </div>
+      <!-- チーズケーキ3種セット (wide) -->
+      <div class="set-card r" style="margin-top:1px">
+        <div class="mcard-img">
+          <img src="S__49872916.jpg" alt="チーズケーキ3種" style="object-position:center 30%">
+        </div>
+        <div class="mcard-body">
+          <span class="mcard-tag">Set</span>
+          <p class="mcard-en" style="margin-top:8px">Cheesecake &amp; Drink Set</p>
+          <h3 class="mcard-name">チーズケーキ3種ドリンクセット</h3>
+          <p class="mcard-desc">プレーン / 抹茶 / 紅茶の3種類が楽しめるセット。<br>ドリンクはアルコール以外からお選びください。</p>
+          <p class="mcard-price">¥ 1,600</p>
+        </div>
+      </div>
+      <!-- 単品 3種 -->
+      <div class="mgrid" style="margin-top:1px">
         <div class="mcard r">
           <div class="mcard-img">
-            <span class="mcard-tag">No.1</span>
-            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=75&fit=crop" alt="満月プリン" loading="lazy">
+            <img src="S__49872914.jpg" alt="きせつのタルト" style="object-position:center 10%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Full Moon Pudding</p>
-            <h3 class="mcard-name">満月プリン</h3>
-            <p class="mcard-desc">黄金色に輝く月をイメージした特製プリン。とろけるやさしい甘さ。</p>
-            <p class="mcard-price">¥ 580</p>
+            <p class="mcard-en">Seasonal Tart</p>
+            <h3 class="mcard-name">きせつのタルト（メロン）</h3>
+            <p class="mcard-desc">旬のフルーツを使った季節限定タルト。見た目も鮮やかな月夜の一皿。</p>
+            <p class="mcard-price">¥ 700</p>
           </div>
         </div>
         <div class="mcard r d1">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=75&fit=crop" alt="クレームブリュレ" loading="lazy">
+            <img src="S__49872914.jpg" alt="なまチョコケーキ" style="object-position:center 50%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Crème Brûlée</p>
-            <h3 class="mcard-name">クレームブリュレ</h3>
-            <p class="mcard-desc">パリッとキャラメリゼした表面。音とともに楽しむ夜のデザート。</p>
+            <p class="mcard-en">Raw Chocolate Cake</p>
+            <h3 class="mcard-name">なまチョコケーキ</h3>
+            <p class="mcard-desc">とろけるような口溶けの生チョコレートケーキ。濃厚な甘さが夜に染みる。</p>
             <p class="mcard-price">¥ 650</p>
           </div>
         </div>
         <div class="mcard r d2">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1541599188778-cdc73298e8fd?w=400&q=75&fit=crop" alt="チョコレートムース" loading="lazy">
+            <img src="S__49872916.jpg" alt="バスクチーズケーキ" style="object-position:center 55%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Chocolate Mousse</p>
-            <h3 class="mcard-name">チョコレートムース</h3>
-            <p class="mcard-desc">カカオ70%クーベルチュールを使ったリッチなムース。星を散りばめた夜空の皿。</p>
-            <p class="mcard-price">¥ 680</p>
-          </div>
-        </div>
-        <div class="mcard r">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=75&fit=crop" alt="季節のパフェ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Seasonal Parfait</p>
-            <h3 class="mcard-name">季節のパフェ</h3>
-            <p class="mcard-desc">旬の素材を重ねたグラスデザート。目でも舌でも楽しむ月夜の傑作。</p>
-            <p class="mcard-price">¥ 880 <sub>季節限定</sub></p>
-          </div>
-        </div>
-        <div class="mcard r d1">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&q=75&fit=crop" alt="黒ごまロールケーキ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Black Sesame Roll</p>
-            <h3 class="mcard-name">黒ごまロールケーキ</h3>
-            <p class="mcard-desc">夜空のような漆黒のロールケーキ。黒ごまの香ばしさとクリームが絡み合う。</p>
-            <p class="mcard-price">¥ 620</p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=75&fit=crop" alt="黒蜜あんみつ" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Anmitsu</p>
-            <h3 class="mcard-name">黒蜜あんみつ</h3>
-            <p class="mcard-desc">上質な和の素材で作るモダンあんみつ。夜に食べるほど心に沁みる甘み。</p>
-            <p class="mcard-price">¥ 720</p>
+            <p class="mcard-en">Basque Cheesecake</p>
+            <h3 class="mcard-name">バスクチーズケーキ</h3>
+            <p class="mcard-desc">表面をしっかり焼き上げたバスク風チーズケーキ。プレーン・抹茶・紅茶の3種。</p>
+            <p class="mcard-price">¥ 650 <sub>各</sub></p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── Light Food ── -->
-    <div class="panel" id="p-food">
+    <!-- ── WAFFLE ── -->
+    <div class="panel" id="p-waffle">
       <div class="mgrid">
         <div class="mcard r">
           <div class="mcard-img">
-            <span class="mcard-tag">おすすめ</span>
-            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&q=75&fit=crop" alt="月夜のトースト" loading="lazy">
+            <img src="S__49872917.jpg" alt="キャラメルワッフル" style="object-position:center 20%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Tsukiyo Toast</p>
-            <h3 class="mcard-name">月夜のトースト</h3>
-            <p class="mcard-desc">バゲットに自家製クリームをたっぷり。夜のお供にちょうどいいひと品。</p>
-            <p class="mcard-price">¥ 480</p>
+            <p class="mcard-en">Caramel Waffle</p>
+            <h3 class="mcard-name">キャラメルワッフル</h3>
+            <p class="mcard-desc">香ばしいキャラメルソースとバニラアイスが絶妙にマッチした定番ワッフル。</p>
+            <p class="mcard-price">¥ 700</p>
           </div>
         </div>
         <div class="mcard r d1">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400&q=75&fit=crop" alt="チーズプレート" loading="lazy">
+            <img src="S__49872917.jpg" alt="キャラメルバナナワッフル" style="object-position:center 75%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Cheese Plate</p>
-            <h3 class="mcard-name">チーズプレート</h3>
-            <p class="mcard-desc">厳選3種のチーズとクラッカー、ドライフルーツ。お酒との相性も抜群。</p>
-            <p class="mcard-price">¥ 980</p>
+            <p class="mcard-en">Caramel Banana Waffle</p>
+            <h3 class="mcard-name">キャラメルバナナワッフル</h3>
+            <p class="mcard-desc">キャラメルソースに甘熟バナナをトッピング。甘さと食感のハーモニー。</p>
+            <p class="mcard-price">¥ 700</p>
           </div>
         </div>
         <div class="mcard r d2">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=75&fit=crop" alt="スープ＆パン" loading="lazy">
+            <img src="S__49872918.jpg" alt="チョコワッフル" style="object-position:center 10%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Soup &amp; Bread</p>
-            <h3 class="mcard-name">スープ＆パンセット</h3>
-            <p class="mcard-desc">季節の野菜を使った温かいスープとパン。体の内側から夜を楽しむひとしな。</p>
-            <p class="mcard-price">¥ 680</p>
+            <p class="mcard-en">Chocolate Waffle</p>
+            <h3 class="mcard-name">チョコワッフル</h3>
+            <p class="mcard-desc">濃厚チョコレートソースたっぷりのリッチなワッフル。甘党に贈る夜の一皿。</p>
+            <p class="mcard-price">¥ 700</p>
           </div>
         </div>
         <div class="mcard r">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=75&fit=crop" alt="クラブサンド" loading="lazy">
+            <img src="S__49872918.jpg" alt="チョコバナナワッフル" style="object-position:center 45%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Club Sandwich</p>
-            <h3 class="mcard-name">クラブサンドイッチ</h3>
-            <p class="mcard-desc">具材たっぷりの3段サンド。夜の小腹にしっかり応えるボリューム感。</p>
-            <p class="mcard-price">¥ 850</p>
+            <p class="mcard-en">Chocolate Banana Waffle</p>
+            <h3 class="mcard-name">チョコバナナワッフル</h3>
+            <p class="mcard-desc">チョコとバナナの王道の組み合わせ。アイスとの三重奏が止まらない美味しさ。</p>
+            <p class="mcard-price">¥ 700</p>
           </div>
         </div>
         <div class="mcard r d1">
           <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400&q=75&fit=crop" alt="ガーリックシュリンプ" loading="lazy">
+            <img src="S__49872918.jpg" alt="メープルワッフル" style="object-position:center 82%">
           </div>
           <div class="mcard-body">
-            <p class="mcard-en">Garlic Shrimp</p>
-            <h3 class="mcard-name">ガーリックシュリンプ</h3>
-            <p class="mcard-desc">プリプリの海老をガーリックバターでソテー。夜の食欲を刺激する香ばしい肴。</p>
-            <p class="mcard-price">¥ 880</p>
-          </div>
-        </div>
-        <div class="mcard r d2">
-          <div class="mcard-img">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=75&fit=crop" alt="カップドリア" loading="lazy">
-          </div>
-          <div class="mcard-body">
-            <p class="mcard-en">Cup Doria</p>
-            <h3 class="mcard-name">カップドリア</h3>
-            <p class="mcard-desc">こんがりチーズが香ばしいカップドリア。夜の締めにちょうどいいひと皿。</p>
-            <p class="mcard-price">¥ 780</p>
+            <p class="mcard-en">Maple Waffle</p>
+            <h3 class="mcard-name">メープルワッフル</h3>
+            <p class="mcard-desc">メープルシロップとバニラアイスのシンプルで優しい甘さ。夜にじんわりと沁みる。</p>
+            <p class="mcard-price">¥ 650</p>
           </div>
         </div>
       </div>
     </div>
 
-    <p style="text-align:center;margin-top:40px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--muted);letter-spacing:.2em">
+    <!-- ── FOOD ── -->
+    <div class="panel" id="p-food">
+      <div class="set-card r" style="max-width:680px">
+        <div class="mcard-img">
+          <img src="S__49872919.jpg" alt="ホットサンド" style="object-position:center 40%">
+        </div>
+        <div class="mcard-body">
+          <p class="mcard-en">Hot Sandwich</p>
+          <h3 class="mcard-name">ホットサンド</h3>
+          <p class="mcard-desc">
+            ツナ / ベーコンエッグの2種類からお選びください。<br>
+            サラダ付き。夜の小腹をやさしく満たす月夜のフード。
+          </p>
+          <p class="mcard-price">¥ 650</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:36px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.8rem;color:var(--muted);letter-spacing:.2em">
       ※ 価格はすべて税込です。メニューは季節により変更となる場合があります。
     </p>
   </div>
 </section>
 
-<!-- ══ INSTAGRAM ══ -->
+<!-- INSTAGRAM -->
 <section class="insta section" id="gallery">
   <div class="container">
     <div class="insta-head r">
-      <span class="label">Gallery</span>
+      <span class="lbl">Gallery</span>
       <h2 class="h2">月夜の日常</h2>
       <div class="rule rule--c"></div>
     </div>
     <div class="igrid r d1">
-      <!-- ★ 各セルのsrcを実際のInstagram写真URLに差し替えてください -->
-      <div class="icell"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
-      <div class="icell"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
-      <div class="icell"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
-      <div class="icell"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
-      <div class="icell"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
-      <div class="icell"><img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=75&fit=crop&crop=entropy" alt="" loading="lazy"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" stroke="white"/><circle cx="12" cy="12" r="3.5" stroke="white"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></div></div>
+      <!-- ★ 実際のInstagram写真に差し替えてください -->
+      <div class="icell"><img src="S__49872915.jpg" alt="つくよケーキセット" style="object-position:center 30%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="icell"><img src="S__49872917.jpg" alt="キャラメルワッフル" style="object-position:center 20%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="icell"><img src="S__49872914.jpg" alt="ケーキメニュー" style="object-position:center 15%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="icell"><img src="S__49872918.jpg" alt="ワッフル" style="object-position:center 15%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="icell"><img src="S__49872916.jpg" alt="チーズケーキ" style="object-position:center 55%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="icell"><img src="S__49872919.jpg" alt="ホットサンド" style="object-position:center 40%"><div class="icell-ov"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
     </div>
     <div class="insta-cta r d2">
       <span class="insta-handle">@tsukuyo_cafe</span>
@@ -741,10 +533,11 @@ address a:hover{opacity:.7}
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer id="access">
   <div class="foot-grid">
     <div class="foot-logo">
+      <img src="S__49872913.jpg" alt="月夜ロゴ" class="foot-logo-img">
       <span>月夜</span>
       <small>Night Café Tsukiyo</small>
     </div>
@@ -772,33 +565,32 @@ address a:hover{opacity:.7}
 </footer>
 
 <script>
-// ── Stars
+// Stars
 (function(){
-  const c = document.getElementById('stars');
+  const c=document.getElementById('stars');
   for(let i=0;i<120;i++){
-    const s = document.createElement('div');
-    const sz = Math.random()*2+.5;
+    const s=document.createElement('div'),sz=Math.random()*2+.5;
     s.className='star';
-    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:${(Math.random()*3).toFixed(1)}s;opacity:${(Math.random()*.6+.1).toFixed(2)}`;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:${(Math.random()*3).toFixed(1)}s;opacity:${(Math.random()*.5+.1).toFixed(2)}`;
     c.appendChild(s);
   }
 })();
 
-// ── Nav scroll
+// Nav
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
 
-// ── Parallax hero moon
+// Parallax moon
 const moon=document.querySelector('.hero-moon');
 window.addEventListener('scroll',()=>{moon.style.transform=`translateY(${scrollY*.12}px)`},{passive:true});
 
-// ── Reveal
+// Reveal
 const io=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}});
-},{threshold:.08,rootMargin:'0px 0px -48px 0px'});
+},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.r').forEach(el=>io.observe(el));
 
-// ── Tabs
+// Tabs
 document.querySelectorAll('.tab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
@@ -807,19 +599,19 @@ document.querySelectorAll('.tab').forEach(btn=>{
     const panel=document.getElementById('p-'+btn.dataset.t);
     panel.classList.add('on');
     panel.querySelectorAll('.r:not(.v)').forEach((el,i)=>{
-      setTimeout(()=>el.classList.add('v'),i*60);
+      setTimeout(()=>el.classList.add('v'),i*55);
     });
   });
 });
 
-// ── Mobile nav
+// Mobile nav
 const burger=document.getElementById('burger');
 const mobNav=document.getElementById('mobNav');
 burger.addEventListener('click',()=>{
   mobNav.classList.toggle('open');
   document.body.style.overflow=mobNav.classList.contains('open')?'hidden':'';
 });
-document.querySelectorAll('.mob-link').forEach(a=>{
+document.querySelectorAll('.mlink').forEach(a=>{
   a.addEventListener('click',()=>{mobNav.classList.remove('open');document.body.style.overflow='';});
 });
 </script>
